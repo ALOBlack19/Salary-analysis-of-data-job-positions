@@ -11,14 +11,14 @@ BASIC STATISTICS
 COUNTING TOTAL and DISTINCT job positions
  */
 SELECT
-	COUNT(DISTINCT s.job_title)
+	COUNT(DISTINCT s.job_title) AS job_count
 FROM
 	salaries s
 
 	
 SELECT 
 	s.job_title,
-	COUNT(s.job_title)
+	COUNT(s.job_title) AS job_count
 FROM	
 	salaries s
 GROUP BY	
