@@ -73,12 +73,15 @@ LIMIT 10;
 
 SELECT 
 	COUNT(s.job_title) AS total_work_types,
-	s.remote_ratio
+	s.remote_ratio,
+	s.work_year
 FROM
 	salaries s
 GROUP BY
-	s.remote_ratio
+	s.remote_ratio,
+	s.work_year
 ORDER BY 
+	s.work_year,
 	COUNT(s.job_title) DESC
 	
 -- 2.2. Remote, Hybrid, or In-Person by company location
@@ -91,13 +94,16 @@ SELECT
 FROM
     salaries s
 WHERE
-	s.remote_ratio = '100'
+	s.remote_ratio = '0'
 GROUP BY
     s.remote_ratio,
     s.company_location
 ORDER BY 
-    total_work_types DESC
-LIMIT 10
+    total_work_types DESC,
+    s.remote_ratio
+LIMIT 
+	20
+
 
 -- HYBRID
 
